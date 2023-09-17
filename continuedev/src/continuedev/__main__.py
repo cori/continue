@@ -1,8 +1,16 @@
+<<<<<<< HEAD
+=======
+import asyncio
+>>>>>>> fd8436e7 (Refactor helper (#481))
 from typing import Optional
 
 import typer
 
+<<<<<<< HEAD
 from . import run
+=======
+from .headless import start_headless_session
+>>>>>>> fd8436e7 (Refactor helper (#481))
 from .server.main import run_server
 
 app = typer.Typer()
@@ -18,7 +26,14 @@ def main(
     headless: bool = typer.Option(False, help="Run in headless mode"),
 ):
     if headless:
+<<<<<<< HEAD
         run(config)
+=======
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(start_headless_session(config=config))
+        tasks = asyncio.all_tasks(loop)
+        loop.run_until_complete(asyncio.gather(*tasks))
+>>>>>>> fd8436e7 (Refactor helper (#481))
     else:
         run_server(port=port, host=host)
 

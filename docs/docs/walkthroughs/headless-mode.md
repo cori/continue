@@ -5,7 +5,11 @@
 To use headless mode:
 
 1. `pip install continuedev` (using a virtual environment is recommended)
+<<<<<<< HEAD
 2. Import `continuedev` and call `run` with the `Step` you would like to run
+=======
+2. Import `continuedev` and call `run_step_headless` with the `Step` you would like to run
+>>>>>>> fd8436e7 (Refactor helper (#481))
 
 Example:
 
@@ -19,7 +23,11 @@ def say_hello(name: str):
 and this function is imported and used in multiple places throughout your codebase. But the name parameter is new, and you need to change the function call everywhere it is used. You can use the script below to edit all usages of the function in your codebase:
 
 ```python
+<<<<<<< HEAD
 from continuedev import run
+=======
+from continuedev.headless import run_step_headless
+>>>>>>> fd8436e7 (Refactor helper (#481))
 from continuedev.models.main import Position, PositionInFile
 from continuedev.plugins.steps.refactor import RefactorReferencesStep
 
@@ -30,7 +38,11 @@ step = RefactorReferencesStep(
         position=Position(line=0, character=5),
     ),
 )
+<<<<<<< HEAD
 run(step)
+=======
+run_step_headless(step=step)
+>>>>>>> fd8436e7 (Refactor helper (#481))
 ```
 
 Here we use Continue's built-in `RefactorReferencesStep`. By passing it the location (filepath and position) of the symbol (function, variable, etc.) that we want to update, Continue will automatically find all references to that symbol and prompt an LLM to make the edit requested in the `user_input` field.

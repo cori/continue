@@ -3,6 +3,7 @@ from typing import Optional, Union
 import typer
 
 from ..core.config import ContinueConfig
+from ..core.main import Step
 from ..server.session_manager import Session, session_manager
 from .headless_ide import LocalIdeProtocol
 
@@ -18,3 +19,16 @@ async def start_headless_session(
 
     ide = LocalIdeProtocol()
     return await session_manager.new_session(ide, config=config)
+<<<<<<< HEAD
+=======
+
+
+def run_step_headless(step: Step):
+    config = ContinueConfig()
+    config.steps_on_startup = [step]
+
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(start_headless_session(config=config))
+    tasks = asyncio.all_tasks(loop)
+    loop.run_until_complete(asyncio.gather(*tasks))
+>>>>>>> fd8436e7 (Refactor helper (#481))

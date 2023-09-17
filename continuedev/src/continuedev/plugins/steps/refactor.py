@@ -1,13 +1,20 @@
 import asyncio
+<<<<<<< HEAD
 from typing import List, Optional
 
 from ripgrepy import Ripgrepy
+=======
+from typing import List
+>>>>>>> fd8436e7 (Refactor helper (#481))
 
 from ...core.main import Step
 from ...core.models import Models
 from ...core.sdk import ContinueSDK
 from ...libs.llm.prompts.edit import simplified_edit_prompt
+<<<<<<< HEAD
 from ...libs.util.ripgrep import get_rg_path
+=======
+>>>>>>> fd8436e7 (Refactor helper (#481))
 from ...libs.util.strings import remove_quotes_and_escapes, strip_code_block
 from ...libs.util.templating import render_prompt_template
 from ...models.filesystem import RangeInFile
@@ -35,6 +42,7 @@ class RefactorReferencesStep(Step):
         )
 
 
+<<<<<<< HEAD
 class RefactorBySearchStep(Step):
     name: str = "Refactor by search"
 
@@ -62,6 +70,8 @@ class RefactorBySearchStep(Step):
         )
 
 
+=======
+>>>>>>> fd8436e7 (Refactor helper (#481))
 class ParallelEditStep(Step):
     name: str = "Edit multiple ranges in parallel"
     user_input: str

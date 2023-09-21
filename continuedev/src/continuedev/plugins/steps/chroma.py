@@ -61,32 +61,8 @@ class AnswerQuestionChroma(Step):
                 )
             )
 
-        files = []
-        for node in results.source_nodes:
-            resource_name = list(node.node.relationships.values())[0]
-            filepath = resource_name[: resource_name.index("::")]
-            files.append(filepath)
-            code_snippets += f"""{filepath}```\n{node.node.text}\n```\n\n"""
-
-        prompt = dedent(
-            f"""Here are a few snippets of code that might be useful in answering the question:
-
-            {code_snippets}
-
-            Here is the question to answer:
-
-            {self.question}
-
-            Here is the answer:"""
-        )
-
-        answer = await sdk.models.summarize.complete(prompt)
-        # Make paths relative to the workspace directory
-        answer = answer.replace(await sdk.ide.getWorkspaceDirectory(), "")
-
-        self._answer = answer
-
-        await sdk.ide.setFileOpen(files[0])
+        await sdk.update_ui()
+        await sdk.run_step(SimpleChatStep(name="Answer Question"))
 
 
 class EditFileChroma(Step):
